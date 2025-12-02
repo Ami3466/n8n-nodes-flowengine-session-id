@@ -1,4 +1,4 @@
-# n8n-nodes-flowengine-ai-session-manager
+# n8n-nodes-flowengine-session-id
 
 > **The Missing Link for AI Agent Setup in n8n**
 
@@ -17,12 +17,12 @@ Inside loops, n8n's context can reset, causing AI agents to lose track of conver
 ### Community Nodes (Recommended)
 1. Go to **Settings > Community Nodes**
 2. Select **Install**
-3. Enter `n8n-nodes-flowengine-ai-session-manager`
+3. Enter `n8n-nodes-flowengine-session-id`
 4. Agree to the risks and click **Install**
 
 ### Manual Installation
 ```bash
-npm install n8n-nodes-flowengine-ai-session-manager
+npm install n8n-nodes-flowengine-ai-session-id
 ```
 
 ## Usage
@@ -67,14 +67,14 @@ Persists a single session ID across multiple loop iterations using `getWorkflowS
 
 ### Basic AI Agent Setup
 ```
-[Trigger] → [AI Session Manager] → [AI Agent with Memory]
+[Trigger] → [AI Session ID] → [AI Agent with Memory]
                     ↓
            { sessionId: "uuid" }
 ```
 
 ### Loop with Persistent Memory
 ```
-[Trigger] → [Split In Batches] → [AI Session Manager (Manage Loop)] → [AI Agent] → [Loop]
+[Trigger] → [Split In Batches] → [AI Session ID (Manage Loop)] → [AI Agent] → [Loop]
                                               ↓
                                  Same sessionId for all iterations
 ```
