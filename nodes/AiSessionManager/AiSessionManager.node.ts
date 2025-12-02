@@ -1,24 +1,33 @@
-import { randomUUID } from 'crypto';
-import {
+import type {
 	IExecuteFunctions,
 	INodeExecutionData,
 	INodeType,
 	INodeTypeDescription,
-	NodeOperationError,
 } from 'n8n-workflow';
+import { NodeOperationError } from 'n8n-workflow';
+
+// UUID v4 generator
+function generateUUID(): string {
+	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+		const r = (Math.random() * 16) | 0;
+		const v = c === 'x' ? r : (r & 0x3) | 0x8;
+		return v.toString(16);
+	});
+}
 
 export class AiSessionManager implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'AI Session Manager',
-		name: 'aiSessionManager',
-		icon: 'fa:id-badge',
+		displayName: 'FlowEngine Session ID',
+		name: 'flowEngineSessionId',
+		icon: 'file:flowengine.svg',
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["mode"]}}',
 		description: 'Generates or manages Session IDs for AI Agents. The missing link for AI Agent setup.',
 		defaults: {
-			name: 'AI Session Manager',
+			name: 'FlowEngine Session ID',
 		},
+		usableAsTool: true,
 		inputs: ['main'],
 		outputs: ['main'],
 		properties: [
@@ -82,7 +91,7 @@ export class AiSessionManager implements INodeType {
 
 				if (mode === 'generateNew') {
 					// Mode 1: Generate a fresh UUID for each item
-					sessionId = randomUUID();
+					sessionId = generateUUID();
 				} else if (mode === 'manageLoop') {
 					// Mode 2: Persist session ID across loop iterations
 					const sessionKey = this.getNodeParameter('sessionKey', itemIndex) as string;
@@ -101,7 +110,7 @@ export class AiSessionManager implements INodeType {
 
 					if (resetSession || !staticData[sessionKey]) {
 						// Generate new ID if resetting or if no existing ID
-						staticData[sessionKey] = randomUUID();
+						staticData[sessionKey] = generateUUID();
 					}
 
 					sessionId = staticData[sessionKey] as string;

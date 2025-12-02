@@ -1,10 +1,13 @@
 {
-	"name": "n8n-nodes-flowengine-ai-session-manager",
+	"name": "n8n-nodes-flowengine-session-id",
 	"version": "1.0.0",
 	"description": "n8n community node for generating and managing Session IDs for AI Agents. Solves the 'Setup Friction' and 'Loop Amnesia' problems.",
+	"license": "MIT",
+	"homepage": "https://flowengine.cloud",
 	"keywords": [
 		"n8n-community-node-package",
 		"n8n",
+		"flowengine",
 		"ai",
 		"session",
 		"uuid",
@@ -12,43 +15,39 @@
 		"memory",
 		"workflow"
 	],
-	"license": "MIT",
-	"homepage": "https://github.com/flowengine/n8n-nodes-flowengine-ai-session-manager",
 	"author": {
 		"name": "FlowEngine",
-		"email": "support@flowengine.ai"
+		"email": "support@flowengine.cloud"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/flowengine/n8n-nodes-flowengine-ai-session-manager.git"
+		"url": "https://github.com/Ami3466/n8n-nodes-flowengine-session-id.git"
 	},
-	"engines": {
-		"node": ">=18.0.0"
-	},
-	"main": "dist/nodes/AiSessionManager/AiSessionManager.node.js",
 	"scripts": {
-		"build": "tsc && gulp build:icons",
-		"dev": "tsc --watch",
-		"format": "prettier nodes --write",
-		"lint": "eslint nodes --ext .ts --fix",
-		"prepublishOnly": "npm run build"
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"release": "n8n-node release"
 	},
 	"files": [
 		"dist"
 	],
 	"n8n": {
 		"n8nNodesApiVersion": 1,
+		"credentials": [],
 		"nodes": [
 			"dist/nodes/AiSessionManager/AiSessionManager.node.js"
-		],
-		"credentials": []
+		]
 	},
+	"dependencies": {},
 	"devDependencies": {
-		"@types/node": "^20.10.0",
-		"gulp": "^4.0.2",
-		"n8n-workflow": "^1.22.0",
-		"prettier": "^3.1.0",
-		"typescript": "^5.3.0"
+		"@n8n/node-cli": "*",
+		"eslint": "9.32.0",
+		"prettier": "3.6.2",
+		"release-it": "^19.0.4",
+		"typescript": "5.9.2"
 	},
 	"peerDependencies": {
 		"n8n-workflow": "*"
