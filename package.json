@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-flowengine-session-id",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "n8n community node for generating and managing Session IDs for AI Agents. Solves the 'Setup Friction' and 'Loop Amnesia' problems.",
 	"license": "MIT",
 	"homepage": "https://flowengine.cloud",
